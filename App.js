@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  fruitOne: {
+  fruit: {
     width: 150,
     height: 150,
     resizeMode: 'contain'
@@ -52,7 +52,7 @@ const slides = [
     text:
       'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     image: require('./assets/Group49.png'),
-    backgroundColor: '#59b2ab',
+    backgroundColor: '#1bbfd9',
   },
   {
     key: '2',
@@ -60,7 +60,7 @@ const slides = [
     text:
       'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     image: require('./assets/Group50.png'),
-    backgroundColor: '#febe29',
+    backgroundColor: '#7ac787',
   },
   {
     key: '3',
@@ -68,7 +68,15 @@ const slides = [
     text:
       'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     image: require('./assets/Group51.png'),
-    backgroundColor: '#22bcb5',
+    backgroundColor: '#dae99a',
+  },
+  {
+    key: '4',
+    title: 'Welcome To Nutro',
+    text:
+      'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    image: require('./assets/Group51.png'),
+    backgroundColor: '#dae99a',
   }
 ];
 
@@ -77,26 +85,50 @@ export default class App extends React.Component {
     showRealApp: false
   }
   _renderItem = ({ item }) => {
-    return (
-      <View style={styles.container}>
-        <View style={
-          {
-            backgroundColor: item.backgroundColor,
-            width: 270,
-            height: 270,
-            borderRadius: 270/2,
-            alignItems: 'center',
-            justifyContent: 'center',
-          }
-        }>
-          <Image style={styles.fruitOne} source={item.image} />
+    if (item.key !== '4') {
+      return (
+        <View style={styles.container}>
+          <View style={
+            {
+              backgroundColor: item.backgroundColor,
+              width: 270,
+              height: 270,
+              borderRadius: 270/2,
+              alignItems: 'center',
+              justifyContent: 'center',
+            }
+          }>
+            <Image style={styles.fruit} source={item.image} />
+          </View>
+          <View style={styles.mainContainer}>
+            <Text style={ styles.header }>{ item.title }</Text>
+            <Text style={ styles.paragraph } ellipsizeMode="middle">{ item.text }</Text>
+          </View>
         </View>
-        <View style={styles.mainContainer}>
-          <Text style={ styles.header }>{ item.title }</Text>
-          <Text style={ styles.paragraph } ellipsizeMode="middle">{ item.text }</Text>
+      );
+    }else{
+      return (
+        <View style={styles.container}>
+          <View style={styles.mainContainer}>
+            <Text style={ styles.header }>{ item.title }</Text>
+            <Text style={ styles.paragraph } ellipsizeMode="middle">{ item.text }</Text>
+          </View>
+          <View style={
+            {
+              backgroundColor: item.backgroundColor,
+              width: 270,
+              height: 270,
+              borderRadius: 270/2,
+              alignItems: 'center',
+              justifyContent: 'center',
+            }
+          }>
+            <Image style={styles.fruit} source={item.image} />
+          </View>
         </View>
-      </View>
-    );
+      )
+    }
+
   }
   _onDone = () => {
     // User finished the introduction. Show real app through
@@ -105,16 +137,20 @@ export default class App extends React.Component {
   }
   render() {
     if (this.state.showRealApp) {
-      return <App />;
+      return(
+        <View>
+          <Text>Fuck You</Text>
+        </View>
+      );
     } else {
       return <AppIntroSlider
         renderItem={this._renderItem}
         slides={slides}
         onDone={this._onDone}
         dotStyle={{ backgroundColor: 'rgba(0,0,0,0.2)', marginBottom: 200 }}
-        activeDotStyle={{ backgroundColor: 'rgba(102,153,255,0.2)', marginBottom: 200 }}
+        activeDotStyle={{ backgroundColor: '#1bbfd9', marginBottom: 200 }}
         bottomButton
-        buttonStyle={{ backgroundColor: "#1abc9c" }}
+        buttonStyle={{ backgroundColor: "#1bbfd9" }}
         nextLabel="Get Started"
       />;
     }
