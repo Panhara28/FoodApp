@@ -3,10 +3,6 @@ import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
 import AppIntroSlider from 'react-native-app-intro-slider';
 
 const styles = StyleSheet.create({
-  image: {
-    width: 320,
-    height: 320,
-  },
   text: {
     color: 'rgba(255, 255, 255, 0.8)',
     backgroundColor: 'transparent',
@@ -18,29 +14,35 @@ const styles = StyleSheet.create({
     color: 'black',
     backgroundColor: 'transparent',
     textAlign: 'center',
-    marginBottom: 16,
   },
   container: {
-    paddingTop: 80,
+    flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    paddingTop: 40
+  },
+  container_test: {
+    flex: 1,
+    flexDirection: 'row',
+    paddingTop: 100
   },
   fruit: {
     width: 150,
     height: 150,
-    resizeMode: 'contain'
+    resizeMode: 'contain',
   },
   header: {
-    paddingTop: 50,
     fontSize: 28,
     fontWeight: "bold",
+    paddingTop: 20
   },
   paragraph: {
     textAlign: 'center',
     paddingHorizontal: 20,
-    paddingTop: 30
+    paddingTop: 10
   },
   mainContainer: {
+    flex: 1,
     alignItems: 'center'
   }
 });
@@ -91,9 +93,9 @@ export default class App extends React.Component {
           <View style={
             {
               backgroundColor: item.backgroundColor,
-              width: 270,
-              height: 270,
-              borderRadius: 270/2,
+              width: 250,
+              height: 250,
+              borderRadius: 250/2,
               alignItems: 'center',
               justifyContent: 'center',
             }
@@ -108,22 +110,37 @@ export default class App extends React.Component {
       );
     }else{
       return (
-        <View style={styles.container}>
-          <View style={styles.mainContainer}>
+        <View>
+          <View style={styles.container}>
             <Text style={ styles.header }>{ item.title }</Text>
             <Text style={ styles.paragraph } ellipsizeMode="middle">{ item.text }</Text>
           </View>
-          <View style={
-            {
-              backgroundColor: item.backgroundColor,
-              width: 270,
-              height: 270,
-              borderRadius: 270/2,
-              alignItems: 'center',
-              justifyContent: 'center',
-            }
-          }>
-            <Image style={styles.fruit} source={item.image} />
+          <View style={styles.container_test}>
+            <View style={
+                {
+                  backgroundColor: "#FE8787",
+                  width: 200,
+                  height: 300,
+                  marginRight: 50,
+                  marginLeft: 35,
+                  borderRadius: 10,
+                  alignItems: 'center',
+                }
+              }>        
+              <Image style={{flex: 1, width: 150,height: 150,resizeMode: 'contain' }} source={ require('./assets/Group54.png') }  />
+            </View>
+            <View style={
+                {
+                  backgroundColor: "#1BBFD9",
+                  width: 100,
+                  height: 170,
+                  marginTop: 130,
+                  borderBottomLeftRadius: 10,
+                  borderTopLeftRadius: 10
+                }
+              }>
+              <Image style={{flex: 1, width: 80,height: 80,resizeMode: 'contain', left: 55 }} source={ require('./assets/Group53.png') }  />        
+            </View>
           </View>
         </View>
       )
@@ -147,8 +164,8 @@ export default class App extends React.Component {
         renderItem={this._renderItem}
         slides={slides}
         onDone={this._onDone}
-        dotStyle={{ backgroundColor: 'rgba(0,0,0,0.2)', marginBottom: 200 }}
-        activeDotStyle={{ backgroundColor: '#1bbfd9', marginBottom: 200 }}
+        dotStyle={{ backgroundColor: 'rgba(0,0,0,0.2)', marginBottom: 50 }}
+        activeDotStyle={{ backgroundColor: '#1bbfd9', marginBottom: 50 }}
         bottomButton
         buttonStyle={{ backgroundColor: "#1bbfd9" }}
         nextLabel="Get Started"
